@@ -4,10 +4,14 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "server":"nodemon server.js"
+    "start": "nodemon server.js",
+    "server": "nodemon server.js",
+    "build": "npm i"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }

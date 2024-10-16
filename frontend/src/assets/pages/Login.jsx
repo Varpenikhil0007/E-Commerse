@@ -15,14 +15,20 @@ const Login = () => {
     try {
       if (currentState === 'Sign Up') {
         const response = await axios.post(backendUrl + '/api/user/register', { name, email, password });
+        console.log(response.data); // Log the entire response for debugging
         if (response.data.success) {
-          setToken(response.data.token);
-          localStorage.setItem('token', response.data.token);
+          console.log(response.data.token);
+          // Clear fields after successful registration
+          setName('');
+          setEmail('');
+          setPassword('');
+          // Optionally redirect or give a success message here
         } else {
           toast.error(response.data.message);
         }
       } else {
         const response = await axios.post(backendUrl + '/api/user/login', { email, password });
+        console.log(response.data); // Log the entire response for debugging
         if (response.data.token) {
           setToken(response.data.token);
           localStorage.setItem('token', response.data.token);
@@ -32,9 +38,14 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.message);
+      if (error.response && error.response.data) {
+        toast.error(error.response.data.message); // Show error from API if available
+      } else {
+        toast.error(error.message);
+      }
     }
   };
+  
 
   useEffect(() => {
     if (token) {

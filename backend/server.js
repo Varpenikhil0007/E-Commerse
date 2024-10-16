@@ -12,7 +12,6 @@ import orderRouter from './routes/orderRoute.js'
 //App Config
 
 
-
 const app =express()
 const port =process.env.PORT || 4000
 connectDB()
@@ -20,7 +19,7 @@ connectCloudinary()
 
 //Middlewares
 app.use(express.json())
-app.options("",cors())
+app.use(cors())
 
 
 //api endpoints

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import userModel from '../models/userModel.js';
 
 const createToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Adding expiration
+    return jwt.sign({ id }, process.env.JWT_SECRET); // Adding expiration
 };
 
 // Route For Login
